@@ -129,12 +129,12 @@ function Selector({
 	modal: HookAPI
 }) {
 	const codes = [
-		{ value: 'R', label: 'R - 现实型' },
-		{ value: 'I', label: 'I - 研究型' },
-		{ value: 'A', label: 'A - 艺术型' },
-		{ value: 'S', label: 'S - 社会型' },
-		{ value: 'E', label: 'E - 企业型' },
-		{ value: 'C', label: 'C - 常规型' },
+		{ value: 'R', label: 'R - 现实型', description: '现实型的人通常对物质世界、机械和物理过程等方面的兴趣和能力比较强。他们通常喜欢从事需要实际操作和解决问题的工作，比如技术人员、机械师、建筑师、农民、警察等。他们通常是实干家，注重实际成果和效率，不太注重人际关系和情感交流。' },
+		{ value: 'I', label: 'I - 研究型', description: '研究型的人通常对思考、分析、研究和解决问题的兴趣和能力比较强。他们喜欢从事需要深入思考和分析的工作，比如科学家、工程师、医生、律师等。他们通常是理性分析者，注重逻辑思考和知识积累，不太注重情感交流和人际关系。' },
+		{ value: 'A', label: 'A - 艺术型', description: '艺术型的人通常对自我表达、创造性和艺术性的兴趣和能力比较强。他们喜欢从事需要创造力和想象力的工作，比如艺术家、作家、设计师、音乐家等。他们通常是富有想象力和创造力的人，注重自我表达和情感交流，不太注重实际成果和效率。' },
+		{ value: 'S', label: 'S - 社会型', description: '社会型的人通常对人与社会交往、教育和帮助他人的兴趣和能力比较强。他们喜欢从事需要与他人交往和帮助他人的工作，比如教师、社会工作者、心理咨询师、护士等。他们通常是善于沟通和理解他人的人，注重人际关系和情感交流，不太注重实际成果和效率。' },
+		{ value: 'E', label: 'E - 企业型', description: '企业型的人通常对领导、影响力和商业机会的兴趣和能力比较强。他们喜欢从事需要领导和管理他人、追求商业机会的工作，比如企业家、销售员、经理、政治家等。他们通常是决策者和领导者，注重权力和影响力，不太注重情感交流和人际关系。' },
+		{ value: 'C', label: 'C - 事务型', description: '事务型的人通常对组织、规则、秩序和数据的兴趣和能力比较强。他们喜欢从事需要遵守规则和组织管理的工作，比如会计师、秘书、行政助理、图书管理员等。他们通常是组织者和记录者，注重精确性和规则遵守，不太注重创造力和自我表达。' },
 	]
 	const [form] = Form.useForm<{
 		firstAlphabet?: string
@@ -321,9 +321,19 @@ function Selector({
 				<Form.Item>
 					<div className='grid grid-cols-3 grid-rows-2 gap-2'>
 						{codes.map((code) => (
-							<div key={code.value} className='w-full text-center border border-gray-300 rounded-md bg-gray-50'>
-								{code.label}
-							</div>
+							<Popover
+							  key={code.value}
+								content={
+									<div className='text-gray-800 text-base w-96'>
+										{code.description}
+									</div>
+								}
+								trigger='hover'
+							>
+								<div className='w-full text-center border border-gray-300 rounded-md bg-gray-50'>
+									{code.label}
+								</div>
+							</Popover>
 						))}
 					</div>
 				</Form.Item>
